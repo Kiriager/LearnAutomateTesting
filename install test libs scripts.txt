@@ -1,0 +1,31 @@
+$NAVServerInstanceName = "BC230"
+Get-NAVAppInfo $NAVServerInstanceName | select Name,version
+$AppVersion = "23.0.12034.12841"
+
+$PackagePath = "C:\Users\kiria\Downloads\Dynamics.365.BC.12841.W1.DVD\Applications\testframework\TestLibraries\Any\Microsoft_Any.app"
+$PackageName = "Any"
+
+Publish-NAVApp -ServerInstance $NAVServerInstanceName -Path $PackagePath -SkipVerification
+Sync-NAVApp -ServerInstance $NAVServerInstanceName -Name $PackageName -Version $APPVersion -Verbose
+Install-NAVApp -ServerInstance $NAVServerInstanceName -Name $PackageName -Version $APPVersion -Verbose  
+
+$PackagePath = "C:\Users\kiria\Downloads\Dynamics.365.BC.12841.W1.DVD\Applications\testframework\TestLibraries\Assert\Microsoft_Library Assert.app"
+$PackageName = "Library Assert"
+
+$PackagePath = "C:\Users\kiria\Downloads\Dynamics.365.BC.12841.W1.DVD\Applications\testframework\TestLibraries\permissions mock\Microsoft_Permissions Mock.app"
+$PackageName = "Permissions Mock"
+
+$PackagePath = "C:\Users\kiria\Downloads\Dynamics.365.BC.12841.W1.DVD\Applications\testframework\TestLibraries\Variable Storage\Microsoft_Library Variable Storage.app"
+$PackageName = "Library Variable Storage"
+
+Restart-NAVServerInstance $NAVServerInstanceName
+
+$PackagePath = "C:\Users\kiria\Downloads\Dynamics.365.BC.12841.W1.DVD\Applications\system application\test\Microsoft_System Application Test Library.app"
+$PackageName = "System Application Test Library"
+
+Restart-NAVServerInstance $NAVServerInstanceName
+
+$PackagePath = "C:\Users\kiria\Downloads\Dynamics.365.BC.12841.W1.DVD\Applications\system application\test\Microsoft_System Application Test.app"
+$PackageName = "System Application Test"
+
+

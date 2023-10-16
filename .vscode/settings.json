@@ -1,0 +1,17 @@
+{
+    "al.enableCodeActions": true,
+    "al.enableCodeAnalysis": true,
+    "al.codeAnalyzers": [
+        "${CodeCop}"
+    ],
+    "al.assemblyProbingPaths": [
+        "C:\\windows\\Microsoft.NET\\assembly"
+    ],
+    "CRS.FileNamePattern": "<ObjectNameShort>.<ObjectTypeShortPascalCase>.al",
+    "CRS.FileNamePatternExtensions": "<ObjectNameShort>.<ObjectTypeShortPascalCase>.al",
+    "CRS.FileNamePatternPageCustomizations": "<ObjectNameShort>.<ObjectTypeShortPascalCase>.al",
+    "CRS.OnSaveAlFileAction": "Rename",
+    "CRS.RenameWithGit": true,
+    "editor.formatOnSave": false,
+    "editor.formatOnPaste": false
+}

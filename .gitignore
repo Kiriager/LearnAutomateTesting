@@ -1,0 +1,11 @@
+# Ignore Visual Studio Code files
+
+.altestrunner
+.alpackages/
+.alcache/
+.vscode/.alcache/
+*.app
+launch.json
+rad.json
+
+Secret*.*
