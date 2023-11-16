@@ -1,10 +1,5 @@
-namespace Honey.Badger.Namespace;
 
-using Microsoft.Sales.Customer;
-using System.IO;
-using System.Text;
-
-pageextension 50100 CustomerListExt extends "Customer List"
+pageextension 71500 CustomerListExt extends "Customer List"
 {
     actions
     {

@@ -1,9 +1,4 @@
-namespace Honey.Badger.Namespace;
-using System.IO;
-using System.Text;
-
-
-tableextension 50100 "CSV Buffer My" extends "CSV Buffer"
+tableextension 71500 "CSV Buffer My" extends "CSV Buffer"
 {
     var
         DotNet_StreamReader: Codeunit DotNet_StreamReader;

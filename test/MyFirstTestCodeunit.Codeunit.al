@@ -1,4 +1,4 @@
-codeunit 50100 MyFirstTestCodeunit
+codeunit 71500 MyFirstTestCodeunit
 {
     Subtype = Test;
     // trigger OnRun()
