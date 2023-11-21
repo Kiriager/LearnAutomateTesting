@@ -80,18 +80,51 @@ pageextension 71500 CustomerListExt extends "Customer List"
 
     trigger OnOpenPage()
     var
-        ValueLength: Integer;
+        CSVBuffer: Record "CSV Buffer";
+        i: Integer;
+        TestLines: array[10] of Text;
+        MessageText: Text;
     begin
-        ValueLength := CalcNextValueLength('"""text""",txt');
-        Message('Value Length: %1', ValueLength);
-        Message('Next Value: %1', GetNextValue('"""text""",txt'));
+        TestLines[1] := 'apple,"cat","do,g",""';
+        TestLines[2] := '"apple",cat';
+        TestLines[3] := '"""apple""",cat';
+        TestLines[4] := '   """apple""",txt';
+        TestLines[5] := '"""""",txt';
+        TestLines[6] := ',cat';
+        TestLines[7] := 'apple';
+        TestLines[8] := ',';
+        TestLines[9] := '';
+        TestLines[10] := '"""""death""""",txt';
+
+
+        // for i := 1 to ArrayLen(TestLines) do begin
+        //     MessageText += StrSubstNo('Line = %1 | Value length = %2 | Value = %3 \',
+        //             TestLines[i], CSVBuffer.CalcNextValueLength(TestLines[i]),
+        //             // CSVBuffer.ClearValue(CSVBuffer.GetNextValue(TestLines[i]))),
+        //             Format(CSVBuffer.GetAllValues(TestLines[i])));
+        // end;
+
+        // Message('%1 %2', TestLines[1], ListToText(CSVBuffer.GetAllValues(TestLines[1])));
+
+        for i := 1 to ArrayLen(TestLines) do
+            MessageText += StrSubstNo('Line = %1 Values = %2 \', TestLines[i], ListToText(CSVBuffer.GetAllValues(TestLines[i])));
+
+
+
+        // ValueLength := CalcNextValueLength('"""text""",txt');
+        // Message('Value Length: %1', ValueLength);
+        // Message('Next Value: %1', GetNextValue('"""text""",txt'));
+        // Message(Format(CSVBuffer.GetNextValueEndIndex(TestLine)));
+
+        // Message('%1, %2, %3', CSVBuffer.CalcDoubleQuotesInARow(TestLine, 1),
+        //         CSVBuffer.CalcDoubleQuotesInARow(TestLine, 5), CSVBuffer.CalcDoubleQuotesInARow(TestLine, 9));
+        Message(MessageText);
     end;
 
     local procedure CalcNextValueLength(Line: Text): Integer
     var
         Str: Codeunit DotNet_String;
         Index: Integer;
-        // ValueLength: Integer;
         QuotesInARow: Integer;
     begin
         Str.Set(Line);
@@ -140,5 +173,16 @@ pageextension 71500 CustomerListExt extends "Customer List"
         Value := Line.Substring(2, CalcNextValueLength(Line) - 1);
         Value := Value.Replace('""', '"');
         exit(Value);
+    end;
+
+    local procedure ListToText(TextList: List of [Text]): Text
+    var
+        Result: Text;
+        Value: Text;
+    begin
+        Result := '|';
+        foreach Value in TextList do
+            Result += Value + '|';
+        exit(Result);
     end;
 }
