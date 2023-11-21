@@ -122,11 +122,7 @@ tableextension 71500 "CSV Buffer My" extends "CSV Buffer"
         Result: Text;
     begin
         Result := ValueLine.Trim();
-        if Result.StartsWith('"') then
-            Result := Result.Substring(2, StrLen(Result) - 1);
-        if Result.EndsWith('"') then
-            Result := Result.Substring(1, StrLen(Result) - 1);
-
+        Result := DelChr(Result, '<>', '"');
         Result := Result.Replace('""', '"');
         exit(Result);
     end;
