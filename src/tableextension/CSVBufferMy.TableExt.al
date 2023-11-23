@@ -6,10 +6,10 @@ tableextension 71500 "CSV Buffer My" extends "CSV Buffer"
         CharactersToTrim: Text;
 
 
-    procedure LoadDataFromStreamHB(CSVInStream: InStream; CSVFieldSeparator: Text[1]; CSVCharactersToTrim: Text)
+    procedure LoadDataFromStreamNew(CSVInStream: InStream; CSVFieldSeparator: Text[1]; CSVCharactersToTrim: Text)
     begin
         InitializeReaderFromStream(CSVInStream, CSVFieldSeparator, CSVCharactersToTrim);
-        ReadLines(0);
+        ReadLinesNew(0);
         DotNet_StreamReader.Close();
     end;
 
@@ -23,7 +23,7 @@ tableextension 71500 "CSV Buffer My" extends "CSV Buffer"
         CharactersToTrim := CSVCharactersToTrim;
     end;
 
-    local procedure ReadLines(NumberOfLines: Integer): Boolean
+    local procedure ReadLinesNew(NumberOfLines: Integer): Boolean
     var
         Str: Codeunit DotNet_String;
         CurrentLineNo: Integer;

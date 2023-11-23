@@ -44,7 +44,7 @@ pageextension 71500 CustomerListExt extends "Customer List"
                 begin
                     if File.UploadIntoStream('Import', '', 'All Files (*.*)|*.*',
                                 FromFileName, InStream) then begin
-                        TempCSVBuffer.LoadDataFromStreamHB(InStream, ',', '');
+                        TempCSVBuffer.LoadDataFromStreamNew(InStream, ',', '');
                         for Col := 1 to TempCSVBuffer.GetNumberOfColumns() do
                             Values += '/' + TempCSVBuffer.GetValue(1, Col);
 
