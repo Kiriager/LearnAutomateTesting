@@ -10,7 +10,14 @@
   "help": "",
   "url": "",
   "logo": "",
-  "dependencies": [],
+  "dependencies": [
+    {
+      "id": "dd0be2ea-f733-4d65-bb34-a28f4624fb14",
+      "name": "Library Assert",
+      "version": "23.0.12034.12841",
+      "publisher": "Microsoft"
+    }
+  ],
   "screenshots": [],
   "platform": "1.0.0.0",
   "application": "22.3.0.0",

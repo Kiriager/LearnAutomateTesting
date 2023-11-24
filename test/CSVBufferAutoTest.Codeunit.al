@@ -3,7 +3,7 @@ codeunit 71502 CSVBufferAutoTest
     Subtype = Test;
 
     [Test]
-    procedure MyProcedure()
+    procedure ReadStreamWithAllValueTypes()
     var
     // CSVBuffer: Integer;
     begin
@@ -24,9 +24,17 @@ codeunit 71502 CSVBufferAutoTest
     end;
 
     local procedure VerifyCSVBufferContainsCorrectValues()
+    var
+        ValueDoesntMatchErr: Label 'Value #%1 doesn''t match correct value';
+        Value: Text;
+        i: Integer;
     begin
-        if TempCSVBuffer.GetNumberOfColumns() <> CreateLineValuesList().Count() then
-            Error('Wring number of values.');
+        Assert.AreEqual(TempCSVBuffer.GetNumberOfLines(), 1, 'Wrong number of lines read.');
+        Assert.AreEqual(TempCSVBuffer.GetNumberOfColumns(), CorrectValuesList.Count(), 'Wrong number of columns read.');
+
+        for i := 1 to CorrectValuesList.Count() do
+            Assert.AreEqual(CorrectValuesList.Get(i), TempCSVBuffer.GetValue(1, i),
+                StrSubstNo(ValueDoesntMatchErr, i));
     end;
 
     local procedure FillTestLinesList()
@@ -80,9 +88,10 @@ codeunit 71502 CSVBufferAutoTest
     var
         TempCSVBuffer: Record "CSV Buffer" temporary;
         TempBlob: Codeunit "Temp Blob";
+        Assert: Codeunit "Library Assert";
         InStream: Instream;
         OutStream: OutStream;
-        CorrectValuesList: LIst of [Text];
+        CorrectValuesList: List of [Text];
 
         SimpleValueTxt: Label 'apple';
         ValueWithSpacesInsideOnlyTxt: Label 'sword and shield';
